@@ -19,7 +19,7 @@ server {
         }
 }
 EOF
-return $CONFIGURATION
+echo "$CONFIGURATION"
 }
 
 nginx_add_domain() {
