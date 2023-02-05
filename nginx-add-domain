@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# This script automates the steps for setting up a new website with nginx described here https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+# Usage
+# bash -c "$(curl https://raw.githubusercontent.com/k-marin/scripts/main/nginx-add-domain)" -s yourdomain.com
+# nginx_add_domain yourdomain.com
+
 # error handling
 set -e
 
@@ -22,20 +27,43 @@ EOF
 echo "$CONFIGURATION"
 }
 
+html_content() {
+    read -d '' HTML_CONTENT << EOF
+    <html>
+        <head>
+        <title>Welcome to your_domain!</title>
+        </head>
+            <body>
+            <h1>Success!  The $1 is working!</h1>
+        </body>
+        </html>
+EOF
+    echo "$HTML_CONTENT"
+}
+
 nginx_add_domain() {
     DOMAIN_NAME=""
     echo "DOMAIN_NAME=$1"
     if [ ! -z "$1" -a "$!" != " " ]; then
         DOMAIN_NAME=$1
         sudo echo "DOMAIN_NAME=$DOMAIN_NAME is set."
+        # create the website static folder
         sudo mkdir -p /var/www/$DOMAIN_NAME/html
+        # set ownership
         sudo chown -R $USER:$USER /var/www/$DOMAIN_NAME/html
+        # folder permissions
         sudo chmod -R 755 /var/www/$DOMAIN_NAME
+        # create index.html#
         sudo touch /var/www/$DOMAIN_NAME/html/index.html
-        sudo echo "<html><head><title>Welcome to your_domain!</title></head><body><h1>Success!  The $DOMAIN_NAME is working!</h1></body></html>" > /var/www/$DOMAIN_NAME/html/index.html
+        # add basic html website
+        sudo echo $(html_content $DOMAIN_NAME) > /var/www/$DOMAIN_NAME/html/index.html
+        # create nginx configuration file
         sudo touch /etc/nginx/sites-available/$DOMAIN_NAME
+        # add basic nginx configuration
         sudo echo "$(nginx_configuration $DOMAIN_NAME)" > /etc/nginx/sites-available/$DOMAIN_NAME
+        # link to sites-enabled 
         sudo ln -sfn /etc/nginx/sites-available/$DOMAIN_NAME /etc/nginx/sites-enabled/
+        # once linked to sites-enabled restart nginx. websites that linked in sites enabled will be served by nginx.
         sudo systemctl restart nginx
     else
        echo "Domain name cannot be empty! Please provide a domain name."

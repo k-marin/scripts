@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Usage examples 
+# gzap "message" 
+# gzap 
+# gzap someMessage 
+# gzap ""
+
+# error handling
+set -e
+
+#Single command to git add, commit and push with custom message as first argument.
+gzap() {
+    COMMIT_MESSAGE="gzap"
+    echo "COMMIT_MESSAGE=$1"
+    if [ ! -z "$1" -a "$!" != " " ]; then
+        COMMIT_MESSAGE=$1
+        echo "COMMIT_MESSAGE=$COMMIT_MESSAGE is set."
+    fi
+    git status
+    git add --all
+    git commit -m "$COMMIT_MESSAGE"
+    currentBranch=$(git status | grep 'On branch [.]*' | awk '{print $3}')
+    echo "current branch $currentBranch"
+    git push origin $currentBranch
+    echo "SUCCESS!"
+}
+gzap $1
