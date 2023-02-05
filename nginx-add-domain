@@ -36,7 +36,7 @@ html_content() {
             <body>
             <h1>Success!  The $1 is working!</h1>
         </body>
-        </html>
+    </html>
 EOF
     echo "$HTML_CONTENT"
 }
