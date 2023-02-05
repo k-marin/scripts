@@ -32,7 +32,7 @@ nginx_add_domain() {
         sudo chown -R $USER:$USER /var/www/$DOMAIN_NAME/html
         sudo chmod -R 755 /var/www/$DOMAIN_NAME
         sudo touch /var/www/$DOMAIN_NAME/html/index.html
-        sudo echo '<html><head><title>Welcome to your_domain!</title></head><body><h1>Success!  The ${DOMAIN_NAME} is working!</h1></body></html>' > /var/www/$DOMAIN_NAME/html/index.html
+        sudo echo '<html><head><title>Welcome to your_domain!</title></head><body><h1>Success!  The $DOMAIN_NAME is working!</h1></body></html>' > /var/www/$DOMAIN_NAME/html/index.html
         sudo touch /etc/nginx/sites-available/$DOMAIN_NAME
         sudo echo "$(nginx_configuration $DOMAIN_NAME)" > /etc/nginx/sites-available/$DOMAIN_NAME
         sudo ln -sfn /etc/nginx/sites-available/$DOMAIN_NAME /etc/nginx/sites-enabled/
