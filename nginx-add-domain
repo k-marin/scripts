@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# error handling
+set -e
+
+nginx_configuration() {
+read -d '' CONFIGURATION << EOF
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/${1}/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name ${1} www.${1};
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
+return $CONFIGURATION
+}
+
+nginx_add_domain() {
+    DOMAIN_NAME=""
+    echo "DOMAIN_NAME=$1"
+    if [ ! -z "$1" -a "$!" != " " ]; then
+        DOMAIN_NAME=$1
+        sudo echo "DOMAIN_NAME=$DOMAIN_NAME is set."
+        sudo mkdir -p /var/www/$DOMAIN_NAME/html
+        sudo chown -R $USER:$USER /var/www/$DOMAIN_NAME/html
+        sudo chmod -R 755 /var/www/$DOMAIN_NAME
+        sudo touch /var/www/$DOMAIN_NAME/html/index.html
+        sudo echo '<html><head><title>Welcome to your_domain!</title></head><body><h1>Success!  The ${DOMAIN_NAME} is working!</h1></body></html>' > /var/www/$DOMAIN_NAME/html/index.html
+        sudo touch /etc/nginx/sites-available/$DOMAIN_NAME
+        sudo echo "$(nginx_configuration $DOMAIN_NAME)" > /etc/nginx/sites-available/$DOMAIN_NAME
+        sudo ln -s /etc/nginx/sites-available/$DOMAIN_NAME /etc/nginx/sites-enabled/
+        sudo systemctl restart nginx
+    else
+       echo "Domain name cannot be empty! Please provide a domain name."
+    fi
+}
+
+
+nginx_add_domain $1
