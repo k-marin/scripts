@@ -35,7 +35,7 @@ nginx_add_domain() {
         sudo echo '<html><head><title>Welcome to your_domain!</title></head><body><h1>Success!  The ${DOMAIN_NAME} is working!</h1></body></html>' > /var/www/$DOMAIN_NAME/html/index.html
         sudo touch /etc/nginx/sites-available/$DOMAIN_NAME
         sudo echo "$(nginx_configuration $DOMAIN_NAME)" > /etc/nginx/sites-available/$DOMAIN_NAME
-        sudo ln -s /etc/nginx/sites-available/$DOMAIN_NAME /etc/nginx/sites-enabled/
+        sudo ln -sfn /etc/nginx/sites-available/$DOMAIN_NAME /etc/nginx/sites-enabled/
         sudo systemctl restart nginx
     else
        echo "Domain name cannot be empty! Please provide a domain name."
