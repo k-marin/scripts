@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "Remote script executed"
+echo "Remote script executed $1 $2"
