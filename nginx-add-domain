@@ -36,7 +36,7 @@ html_content() {
             <body>
             <h1>Success!  The $1 is working!</h1>
         </body>
-    </html>
+    g</html>
 EOF
     echo "$HTML_CONTENT"
 }
@@ -46,7 +46,7 @@ nginx_add_domain() {
     echo "DOMAIN_NAME=$1"
     if [ ! -z "$1" -a "$!" != " " ]; then
         DOMAIN_NAME=$1
-        sudo echo "DOMAIN_NAME=$DOMAIN_NAME is set."
+        echo "DOMAIN_NAME=$DOMAIN_NAME is set."
         # create the website static folder
         sudo mkdir -p /var/www/$DOMAIN_NAME/html
         # set ownership
@@ -60,7 +60,7 @@ nginx_add_domain() {
         # create nginx configuration file
         sudo touch /etc/nginx/sites-available/$DOMAIN_NAME
         # add basic nginx configuration
-        sudo echo "$(nginx_configuration $DOMAIN_NAME)" > /etc/nginx/sites-available/$DOMAIN_NAME
+        echo "$(nginx_configuration $DOMAIN_NAME)" > /etc/nginx/sites-available/$DOMAIN_NAME
         # link to sites-enabled 
         sudo ln -sfn /etc/nginx/sites-available/$DOMAIN_NAME /etc/nginx/sites-enabled/
         # once linked to sites-enabled restart nginx. websites that linked in sites enabled will be served by nginx.
