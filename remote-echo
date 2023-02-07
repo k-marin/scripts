@@ -1,5 +1,5 @@
 
-#Usage 
+# Usage 
 # With params and Without cache bust
 # curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/remote-echo | sh -s param1 param2
 #
