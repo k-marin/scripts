@@ -1,10 +1,10 @@
+#!/bin/sh
 
-# Usage 
+# @usage 
 # With params and Without cache bust
 # curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/remote-echo | sh -s param1 param2
 #
 # Without params and with cache bust - Github raw files Cache-Control: max-age=300 in order to avoid caching use the command below for testing.
 # curl -sfL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/k-marin/scripts/main/remote-echo | sh -
 
-#!/bin/sh
 echo "Remote script executed param1=$1 param2=$2."
