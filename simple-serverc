@@ -27,7 +27,6 @@ EOF
 echo $INDEX
 }
 
-EOF
 while true;
 do
     (echo -e "HTTP/1.1 200 OK\r\nContent-Length: $(expr length "$(index_html)")\r\n"; echo $(index_html); ) | nc -l $PORT_NO;
