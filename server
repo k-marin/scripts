@@ -29,7 +29,7 @@ EOF
 echo $VALUE
 }
 INDEX=$(index_html)
-RESPONSE_HEADERS = "HTTP/1.1 200 OK\r\nContent-Length: ${#INDEX}\r\nContent-Type: text/html\r\n"
+RESPONSE_HEADERS="HTTP/1.1 200 OK\r\nContent-Length: ${#INDEX}\r\nContent-Type: text/html\r\n"
 while true;
 do
     { echo -e $RESPONSE_HEADERS; echo $INDEX; } | nc -l $PORT_NO;
