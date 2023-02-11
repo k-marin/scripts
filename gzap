@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# Usage
-# gzap "message" 
+# @usage
+# Single command to git add, commit and push with custom message as the first argument.
+#
+# gzap "message"
 # gzap 
 # gzap someMessage 
 # gzap ""
@@ -9,7 +11,6 @@
 # error handling
 set -e
 
-#Single command to git add, commit and push with custom message as first argument.
 gzap() {
     COMMIT_MESSAGE="automatic commit message"
     echo "COMMIT_MESSAGE=$1"

@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# @usage 
+# @usage
+# This script is used for testing purposes, github raw files are cached and might take to update any changes made to this file, renaming might help for faster debugging.
 # With params
 # curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/remote-echo | sh -s param1 param2
 #
