@@ -7,7 +7,7 @@
 set -e
 
 DOMAIN_NAME="yourdomain.com"
-PORT_NO=8080
+PORT_NO="8080"
 if [ ! -z "$1" -a "$!" != " " ]; then
     DOMAIN_NAME=$1
 fi
