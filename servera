@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # @usage
+# This script creates a simple server using the nc command.
+#
 # curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/simple-server | bash -s yourdomain.com 8080
 
 # error handling
@@ -30,5 +32,5 @@ INDEX=$(index_html)
 
 while true;
 do
-    { echo -e "HTTP/1.1 200 OK\r\nContent-Length: $(expr length "$INDEX")\r\n"; echo $INDEX; } | nc -l $PORT_NO;
+    { echo -e "HTTP/1.1 200 OK\r\nContent-Length: ${#INDEX}\r\n"; echo $INDEX; } | nc -l $PORT_NO;
 done
