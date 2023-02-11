@@ -6,8 +6,8 @@
 # error handling
 set -e
 
-DOMAIN_NAME="yourdomain.com"
-PORT_NO=8080
+# DOMAIN_NAME="yourdomain.com"
+# PORT_NO=8080
 # if [ ! -z "$1" -a "$!" != " " ]; then
 #     DOMAIN_NAME=$1
 # fi
@@ -15,6 +15,7 @@ PORT_NO=8080
 #     PORT_NO=$2
 # fi
 
+index_html() {
 read -d '' INDEX << EOF
 <html>
  <head>
@@ -23,7 +24,11 @@ read -d '' INDEX << EOF
  <body>Latest news about $DOMAIN_NAME</body>
 </html>
 EOF
+echo $INDEX
+}
+
+EOF
 while true;
 do
-    (echo -e "HTTP/1.1 200 OK\r\nContent-Length: $(expr length "$INDEX")\r\n"; echo $INDEX; ) | nc -l $PORT_NO;
+    (echo -e "HTTP/1.1 200 OK\r\nContent-Length: $(expr length "$(index_html)")\r\n"; echo $(index_html); ) | nc -l $PORT_NO;
 done
