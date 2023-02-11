@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# @usage
+# curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/simple-server | bash -s yourdomain.com 8080
+
+# error handling
+set -e
+
+DOMAIN_NAME="yourdomain.com"
+PORT_NO=8080
+if [ ! -z "$1" -a "$!" != " " ]; then
+    DOMAIN_NAME=$1
+fi
+if [ ! -z "$2" -a "$!" != " " ]; then
+    PORT_NO=$2
+fi
+
+index_html() {
+read -r -d '' VALUE << EOF
+<html>
+ <head>
+  <title>Welcome to the $DOMAIN_NAME</title>
+ <head>
+ <body>Latest news about $DOMAIN_NAME</body>
+</html>
+EOF
+echo $VALUE
+}
+INDEX=$(index_html)
+
+while true;
+do
+    { echo -e "HTTP/1.1 200 OK\r\nContent-Length: $(expr length "$INDEX")\r\n"; echo $INDEX; } | nc -l $PORT_NO;
+done
