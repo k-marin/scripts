@@ -3,7 +3,7 @@
 # @usage
 # This script creates a simple server using the nc command.
 #
-# curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/simple-server | bash -s yourdomain.com 8080
+# curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/server | bash -s yourdomain.com 8080
 
 # error handling
 set -e
