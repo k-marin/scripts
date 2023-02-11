@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # This script automates the steps for setting up a new website with nginx described here https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
-# Usage
+# @usage
 # curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/remote-echo | sh -s yourdomain.com
 # curl -sfL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/k-marin/scripts/main/remote-echo | sh -s yourdomain.com
 # bash -c "$(curl https://raw.githubusercontent.com/k-marin/scripts/main/nginx-add-domain)" -s yourdomain.com

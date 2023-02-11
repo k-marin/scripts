@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Without params and with cache bust - Github raw files Cache-Control: max-age=300 in order to avoid caching use the command below for testing.
 # curl -sfL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/k-marin/scripts/main/simple-server | sh -s yourdomain.com 8080
@@ -16,7 +16,7 @@ set -e
 # fi
 
 index_html() {
-read -d '' INDEX << EOF
+read -r -d '' INDEX << EOF
 <html>
  <head>
   <title>Welcome to the $DOMAIN_NAME</title>
