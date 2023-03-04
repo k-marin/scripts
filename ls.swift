@@ -1,5 +1,8 @@
 #!/usr/bin/env swift
 import Foundation
+// https://stackoverflow.com/questions/26971240/how-do-i-run-a-terminal-command-in-a-swift-script-e-g-xcodebuild
+//https://rderik.com/blog/using-swift-for-scripting/
+
 
 // let ls = Process()
 // ls.executableURL = URL(fileURLWithPath: "/usr/bin/env")

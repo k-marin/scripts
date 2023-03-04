@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# This script automates the steps for setting up a new website with nginx described here https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
 # @usage
+# This script automates the steps for setting up a new website with nginx described here https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+#
 # curl -sfL https://raw.githubusercontent.com/k-marin/scripts/main/nginx-add-domain | bash -s yourdomain.com
 # bash -c "$(curl https://raw.githubusercontent.com/k-marin/scripts/main/nginx-add-domain)" -s yourdomain.com
 # nginx_add_domain yourdomain.com
